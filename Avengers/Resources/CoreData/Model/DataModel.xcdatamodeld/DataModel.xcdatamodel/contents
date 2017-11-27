@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G1036" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ComicAuthor" representedClassName=".ComicAuthor" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="role" attributeType="String" syncable="YES"/>
+        <relationship name="comic" maxCount="1" deletionRule="Nullify" destinationEntity="ComicData" inverseName="authors" inverseEntity="ComicData" syncable="YES"/>
+    </entity>
+    <entity name="ComicData" representedClassName=".ComicData" syncable="YES">
+        <attribute name="comicDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comicImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="comicTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publishedDate" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="authors" toMany="YES" deletionRule="Nullify" destinationEntity="ComicAuthor" inverseName="comic" inverseEntity="ComicAuthor" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ComicAuthor" positionX="-63" positionY="18" width="128" height="90"/>
+        <element name="ComicData" positionX="-63" positionY="-18" width="128" height="120"/>
+    </elements>
+</model>
