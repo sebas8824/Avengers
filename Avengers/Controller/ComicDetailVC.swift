@@ -22,9 +22,6 @@ class ComicDetailVC: UIViewController {
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistenceContainer.viewContext
     
-    //
-    private var fetchedRC: NSFetchedResultsController<ComicAuthor>!
-    
     var comicFromVC: Comic!
     var comicDetailApi: ApiRequestTransformer = ApiRequestTransformer()
     var objectBuilder: ObjectBuilder = ObjectBuilder()
@@ -67,6 +64,19 @@ class ComicDetailVC: UIViewController {
     }
     
     @IBAction func insertFavorite(_ sender: UIBarButtonItem) {
+        let insertAlert = UIAlertController(title: "Alert", message: "Are you willing to save this comic on your favorite comic list?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        insertAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            self.saveComic()
+        }))
+        
+        insertAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            return
+        }))
+        self.present(insertAlert, animated: true, completion: nil)
+    }
+    
+    func saveComic() {
         let data = globalComicDetail
         let authorsData = globalComicDetail.comicCreators
         let comic = ComicData(entity: ComicData.entity(), insertInto: context)
@@ -75,37 +85,11 @@ class ComicDetailVC: UIViewController {
         comic.publishedDate = data?.publishedDate
         comic.comicImage = UIImagePNGRepresentation(data!.comicImage) as NSData?
         for authorData in authorsData {
-            let author = ComicAuthor(entity: ComicAuthor.entity(), insertInto: context)
+            let author = ComicAuthor(entity: ComicAuthor.entity(), insertInto: self.context)
             author.name = authorData.creatorName
             author.role = authorData.creatorRole
             author.comic = comic
         }
         appDelegate.saveContext()
-        // Get last insertion
-        do {
-            var comicsTotal = [ComicData]()
-                comicsTotal = try context.fetch(ComicData.fetchRequest())
-            print(comicsTotal[comicsTotal.count-1].authors)
-        } catch {
-            print("error")
-        }
-
     }
-    
-    private func requestAuthors(comic: ComicData) {
-        let query = ""
-        let request = ComicAuthor.fetchRequest() as NSFetchRequest<ComicAuthor>
-        if query.isEmpty {
-            request.predicate = NSPredicate(format: "comic = %@", comic)
-        } else {
-            request.predicate = NSPredicate(format: "name CONTAINS[cd] %@ owner = %@", query, comic)
-        }
-        do {
-            fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-            try fetchedRC.performFetch()
-        } catch let error as NSError {
-            print("error")
-        }
-    }
-    
 }

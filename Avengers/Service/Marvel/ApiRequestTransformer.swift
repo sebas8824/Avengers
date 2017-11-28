@@ -33,7 +33,6 @@ class ApiRequestTransformer {
                         pages: result["pageCount"].stringValue,
                         price: result["prices"][0]["price"].stringValue,
                         comicURL: self.formatter.urlNormalizer(url: result["resourceURI"].stringValue)))
-                                  
                 }
                 completionHandler(comics)
             } else {

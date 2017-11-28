@@ -7,29 +7,51 @@
 //
 
 import UIKit
+import CoreData
 
 class FavoriteDetailsVC: UIViewController {
-
+    @IBOutlet weak var favoriteComicTitle: UILabel!
+    @IBOutlet weak var comicPublishedDate: UILabel!
+    @IBOutlet weak var authorsList: UIStackView!
+    @IBOutlet weak var comicImage: UIImageView!
+    @IBOutlet weak var comicDescription: UILabel!
+    
+    private var favoriteComic: ComicData!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateViews()
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func initSection(comicDetail: ComicData) {
+        favoriteComic = comicDetail
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func updateViews() {
+        favoriteComicTitle.text = favoriteComic.comicTitle
+        comicPublishedDate.text = favoriteComic.publishedDate ?? "Published date not available"
+        comicDescription.text = favoriteComic.comicDescription ?? "Description not available"
+        comicImage.image = UIImage(data: favoriteComic.comicImage as! Data)
+        setUpAuthorsView(creators: favoriteComic.authors?.allObjects as! [ComicAuthor])
     }
-    */
+    
+    func setUpAuthorsView(creators: [ComicAuthor]) {
+        let viewWidth = authorsList.frame.origin.x
+        let viewHeight = authorsList.frame.origin.y
+        for creator in creators {
+            var totalHeigth = 0
+            let creatorLabel = UILabel(frame: CGRect(x: CGFloat(0), y: CGFloat(totalHeigth), width: viewWidth, height: CGFloat(Int(viewHeight) / creators.count)))
+            let name = creator.name
+            let role = creator.role
+            creatorLabel.text = "\(name!) - \(role!)"
+            creatorLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            creatorLabel.numberOfLines = 0
+            creatorLabel.font = UIFont(name: "Avenir Next", size: 14.0)
+            creatorLabel.textAlignment = .left
+            authorsList.addArrangedSubview(creatorLabel)
+            totalHeigth += Int(viewHeight) / creators.count
+        }
+    }
 
 }

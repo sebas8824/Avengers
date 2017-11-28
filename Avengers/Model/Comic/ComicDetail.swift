@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 struct ComicDetail {
+    
+    var formatter : Formatter = Formatter()
+    
     private(set) public var comicTitle: String
     private(set) public var comicImage: UIImage
     private(set) public var publishedDate: String
@@ -19,8 +22,8 @@ struct ComicDetail {
     init(comicTitle: String, comicImage: UIImage, publishedDate: String, comicCreators: [ComicCreator], comicDescription: String) {
         self.comicTitle = comicTitle
         self.comicImage = comicImage
-        self.publishedDate = publishedDate
+        self.publishedDate = formatter.dateFormatter(date: publishedDate)
         self.comicCreators = comicCreators
-        self.comicDescription = comicDescription
+        self.comicDescription = comicDescription ?? "Description not available"
     }
 }

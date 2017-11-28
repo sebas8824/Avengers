@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10FE754D1FCDBBD400606F80 /* FavoriteItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FE754C1FCDBBD400606F80 /* FavoriteItemCell.swift */; };
 		341C1AFE1FC8B1F100C5546B /* RequestUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341C1AFD1FC8B1F100C5546B /* RequestUrlBuilder.swift */; };
 		3456130D1FCB1F770062BB90 /* ComicDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3456130C1FCB1F770062BB90 /* ComicDetail.swift */; };
 		3458BA621FCB27F60040CAD3 /* ComicCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3458BA611FCB27F60040CAD3 /* ComicCreator.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		0491474D4FF8872C4ADAE3E3 /* Pods_Avengers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Avengers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10FE754C1FCDBBD400606F80 /* FavoriteItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteItemCell.swift; sourceTree = "<group>"; };
 		1193C545AFE231E1439E8945 /* Pods-Avengers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Avengers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Avengers/Pods-Avengers.release.xcconfig"; sourceTree = "<group>"; };
 		341C1AFD1FC8B1F100C5546B /* RequestUrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUrlBuilder.swift; sourceTree = "<group>"; };
 		3456130C1FCB1F770062BB90 /* ComicDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetail.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				34E50B9C1FC8DEE500B93F27 /* Comic.swift */,
 				3456130C1FCB1F770062BB90 /* ComicDetail.swift */,
 				3458BA611FCB27F60040CAD3 /* ComicCreator.swift */,
+				34B62F8E1FC87518002AD46E /* ComicVC.swift */,
 			);
 			path = Comic;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			children = (
 				34B62FA91FC88F18002AD46E /* HeroCell.swift */,
 				34D983571FC90902001E6A8F /* ComicCell.swift */,
+				10FE754C1FCDBBD400606F80 /* FavoriteItemCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,7 +172,6 @@
 		34B62FA01FC87547002AD46E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				34B62F8E1FC87518002AD46E /* ComicVC.swift */,
 				34B62FA11FC88251002AD46E /* MainVC.swift */,
 				34DBD5C81FC9FAAF0011E163 /* ComicDetailVC.swift */,
 				34B579C31FCCC75800EE9423 /* FavoriteListVC.swift */,
@@ -436,6 +439,7 @@
 				3458BA621FCB27F60040CAD3 /* ComicCreator.swift in Sources */,
 				341C1AFE1FC8B1F100C5546B /* RequestUrlBuilder.swift in Sources */,
 				34B579C21FCCBCB400EE9423 /* ComicAuthor+CoreDataProperties.swift in Sources */,
+				10FE754D1FCDBBD400606F80 /* FavoriteItemCell.swift in Sources */,
 				34B62FA21FC88251002AD46E /* MainVC.swift in Sources */,
 				34D983581FC90902001E6A8F /* ComicCell.swift in Sources */,
 				3456130D1FCB1F770062BB90 /* ComicDetail.swift in Sources */,
