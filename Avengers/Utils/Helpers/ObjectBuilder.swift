@@ -48,4 +48,19 @@ class ObjectBuilder {
         return alert
     }
     
+    func addSpinner(forScreenWidth width: CGFloat, forScreenHeight height: CGFloat, forView view: UIView, completionHandler: @escaping (UIActivityIndicatorView) -> ()) {
+        let spinner = UIActivityIndicatorView()
+        spinner.center = CGPoint(x: (width / 2) - (spinner.frame.width / 2), y: (height / 2) - (spinner.frame.height / 2) )
+        spinner.activityIndicatorViewStyle = .whiteLarge
+        spinner.color = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        spinner.startAnimating()
+        view.addSubview(spinner)
+        completionHandler(spinner)
+    }
+    
+    func removeSpinner(forSpinner spinner: UIActivityIndicatorView) {
+        if spinner != nil {
+            spinner.removeFromSuperview()
+        }
+    }
 }

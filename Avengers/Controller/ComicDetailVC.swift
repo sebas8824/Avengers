@@ -28,12 +28,20 @@ class ComicDetailVC: UIViewController {
     var comicDetailApi: ApiRequestTransformer = ApiRequestTransformer()
     var objectBuilder: ObjectBuilder = ObjectBuilder()
     var globalComicDetail: ComicDetail!
+    var screenSize = UIScreen.main.bounds
+    var spinner: UIActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        objectBuilder.addSpinner(forScreenWidth: screenSize.width, forScreenHeight: screenSize.height, forView: comicDetailBackground) { (spin) in
+            self.spinner = spin
+        }
+        
         if isConnected {
             comicDetailApi.comicRequestByComicId(forComic: comicFromVC) { (comicDetail) in
                 self.updateView(comic: self.comicFromVC, detail: comicDetail)
+                self.objectBuilder.removeSpinner(forSpinner: self.spinner!)
             }
         } else {
             self.present(objectBuilder.offlineAlert(), animated: false)

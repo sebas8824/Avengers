@@ -27,8 +27,9 @@ class ComicVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
         comicTableView.delegate = self
         comicTableView.dataSource = self
-        
-        addSpinner()
+        objectBuilder.addSpinner(forScreenWidth: screenSize.width, forScreenHeight: screenSize.height, forView: comicTableView) { (spin) in
+            self.spinner = spin
+        }        
         updateUserInterface(hero: selectedHero)
         
         if isConnected {
@@ -38,7 +39,7 @@ class ComicVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                     for comic in response {
                         self.objectBuilder.renderImagesFromUrl(url: comic.imageUrl, completionHandler: { (image) in
                             self.comicsArray.append(Comic.init(image: image, comic: comic))
-                            self.removeSpinner()
+                            self.objectBuilder.removeSpinner(forSpinner: self.spinner!)
                             self.comicTableView?.reloadData()
                         })
                     }
@@ -82,7 +83,7 @@ class ComicVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func addSpinner() {
+    /*func addSpinner() {
         spinner = UIActivityIndicatorView()
         spinner?.center = CGPoint(x: (screenSize.width / 2) - ((spinner?.frame.width)! / 2), y: (screenSize.height / 2) - ((spinner?.frame.height)! / 2) )
         spinner?.activityIndicatorViewStyle = .whiteLarge
@@ -95,7 +96,7 @@ class ComicVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if spinner != nil {
             spinner?.removeFromSuperview()
         }
-    }
+    }*/
     
     func updateUserInterface(hero: Hero) {
         let logo = UIImage(named: hero.logo)

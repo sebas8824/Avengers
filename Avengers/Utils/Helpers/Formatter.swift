@@ -15,7 +15,7 @@ class Formatter {
     
     func dateFormatter(date: String) -> String {
         let regex = try! NSRegularExpression(pattern: "(\\d+)-(\\d+)-(\\d+)T.*", options: NSRegularExpression.Options.caseInsensitive)
-        let range = NSMakeRange(0, date.characters.count)
+        let range = NSMakeRange(0, date.count)        
         let year = regex.stringByReplacingMatches(in: date, options: .anchored, range: range, withTemplate: "$1")
         let month = textMonth(month: regex.stringByReplacingMatches(in: date, options: .anchored, range: range, withTemplate: "$2"))
         let day = regex.stringByReplacingMatches(in: date, options: .anchored, range: range, withTemplate: "$3")
