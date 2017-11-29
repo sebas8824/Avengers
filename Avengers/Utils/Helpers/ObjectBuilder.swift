@@ -38,7 +38,7 @@ class ObjectBuilder {
                 alert.addAction(action)
             }
         } else {
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         }        
         return alert
     }

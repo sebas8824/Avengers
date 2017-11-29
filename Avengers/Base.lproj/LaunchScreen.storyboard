@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avengers-minimalist" translatesAutoresizingMaskIntoConstraints="NO" id="LIl-Rt-rNu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avengers-launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="LIl-Rt-rNu">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
@@ -39,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="avengers-minimalist" width="390" height="600"/>
+        <image name="avengers-launchscreen" width="150" height="225"/>
     </resources>
 </document>

@@ -10,18 +10,23 @@ import UIKit
 
 class FavoriteListVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var favoritesCollectionList: UICollectionView!
+    
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistenceContainer.viewContext
     var comicsTotal = [ComicData]()
-    
-    @IBOutlet weak var favoritesCollectionList: UICollectionView!
+    var objectBuilder: ObjectBuilder = ObjectBuilder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         favoritesCollectionList.delegate = self
         favoritesCollectionList.dataSource = self
         retrieveFavorites()
-        
+        if comicsTotal.isEmpty {
+            let alert = objectBuilder.alertBuilder(forTitle: "Favorite comics", forMessage: "Please select heroes, check their comics and add some to your favorites list", forActions: nil)
+            self.present(alert, animated: false, completion: nil)
+            self.navigationController?.backToViewController(vc: MainVC.self)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
