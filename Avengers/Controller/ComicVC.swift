@@ -83,21 +83,6 @@ class ComicVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    /*func addSpinner() {
-        spinner = UIActivityIndicatorView()
-        spinner?.center = CGPoint(x: (screenSize.width / 2) - ((spinner?.frame.width)! / 2), y: (screenSize.height / 2) - ((spinner?.frame.height)! / 2) )
-        spinner?.activityIndicatorViewStyle = .whiteLarge
-        spinner?.color = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        spinner?.startAnimating()
-        comicTableView?.addSubview(spinner!)
-    }
-    
-    func removeSpinner() {
-        if spinner != nil {
-            spinner?.removeFromSuperview()
-        }
-    }*/
-    
     func updateUserInterface(hero: Hero) {
         let logo = UIImage(named: hero.logo)
         let imageView = UIImageView(image: logo)

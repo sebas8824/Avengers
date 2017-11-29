@@ -10,7 +10,6 @@ import UIKit
 
 class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    //MARK: Outlets
     @IBOutlet weak var heroTableView: UITableView!
     @IBOutlet weak var favoritesButton: UIButton!
     
@@ -24,13 +23,10 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         heroTableView.delegate = self
     }
 
-    //MARK: TableView protocol implementation
-    //Table view size
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return HeroDefaultData.instance.getHeroes().count
     }
     
-    //Table view data population
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "HeroCell") as? HeroCell {
             let hero = HeroDefaultData.instance.getHeroes()[indexPath.row]
@@ -41,7 +37,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    //Table view actions
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isConnected {
             performSegue(withIdentifier: "HeroVC", sender: HeroDefaultData.instance.getHeroes()[indexPath.row])
@@ -50,7 +45,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    //Segue to comicVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let comicVC = segue.destination as? ComicVC {
             let barBtn = UIBarButtonItem()
