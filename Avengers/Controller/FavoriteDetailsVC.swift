@@ -15,11 +15,12 @@ class FavoriteDetailsVC: UIViewController {
     @IBOutlet weak var authorsList: UIStackView!
     @IBOutlet weak var comicImage: UIImageView!
     @IBOutlet weak var comicDescription: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     private var favoriteComic: ComicData!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
         updateViews()
         // Do any additional setup after loading the view.
     }

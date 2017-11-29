@@ -20,6 +20,7 @@ class ComicVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var comicsArray = [Comic]()
     var spinner: UIActivityIndicatorView?
     var screenSize = UIScreen.main.bounds
+    var isConnected = Reachability.isConnectedToNetwork()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,18 +31,24 @@ class ComicVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         addSpinner()
         updateUserInterface(hero: selectedHero)
         
-        heroComicRequest.comicRequest(forHero: selectedHero) {
-            response in
-            if response.count > 0 {
-                for comic in response {
-                    self.objectBuilder.renderImagesFromUrl(url: comic.imageUrl, completionHandler: { (image) in
-                        self.comicsArray.append(Comic.init(image: image, comic: comic))
-                        self.removeSpinner()
-                        self.comicTableView?.reloadData()
-                    })
+        if isConnected {
+            heroComicRequest.comicRequest(forHero: selectedHero) {
+                response in
+                if response.count > 0 {
+                    for comic in response {
+                        self.objectBuilder.renderImagesFromUrl(url: comic.imageUrl, completionHandler: { (image) in
+                            self.comicsArray.append(Comic.init(image: image, comic: comic))
+                            self.removeSpinner()
+                            self.comicTableView?.reloadData()
+                        })
+                    }
                 }
             }
+        } else {
+            self.present(objectBuilder.offlineAlert(), animated: false)
+            self.navigationController?.backToViewController(vc: MainVC.self)
         }
+        
     }
     
     func initSection(hero: Hero) {
@@ -55,8 +62,7 @@ class ComicVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ComicCell") as? ComicCell {
             let comic = comicsArray[indexPath.row]
-            cell.backgroundColor = selectedHero.backgroundColor
-            cell.updateViews(comic: comic)            
+            cell.updateViews(comic: comic)
             return cell
         } else {
             return ComicCell()
@@ -95,11 +101,7 @@ class ComicVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let logo = UIImage(named: hero.logo)
         let imageView = UIImageView(image: logo)
         imageView.contentMode = .scaleAspectFit
-        self.navigationItem.titleView = imageView
-        self.navigationController?.navigationBar.barTintColor = hero.headerColor
-        self.view?.backgroundColor = hero.backgroundColor
-        comicTableView?.backgroundColor = hero.backgroundColor
-        
+        self.navigationItem.titleView = imageView        
     }
 }
 

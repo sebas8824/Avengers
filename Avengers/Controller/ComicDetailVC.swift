@@ -22,6 +22,8 @@ class ComicDetailVC: UIViewController {
     private var appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistenceContainer.viewContext
     
+    
+    var isConnected = Reachability.isConnectedToNetwork()
     var comicFromVC: Comic!
     var comicDetailApi: ApiRequestTransformer = ApiRequestTransformer()
     var objectBuilder: ObjectBuilder = ObjectBuilder()
@@ -29,8 +31,13 @@ class ComicDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        comicDetailApi.comicRequestByComicId(forComic: comicFromVC) { (comicDetail) in
-            self.updateView(comic: self.comicFromVC, detail: comicDetail)
+        if isConnected {
+            comicDetailApi.comicRequestByComicId(forComic: comicFromVC) { (comicDetail) in
+                self.updateView(comic: self.comicFromVC, detail: comicDetail)
+            }
+        } else {
+            self.present(objectBuilder.offlineAlert(), animated: false)
+            self.navigationController?.backToViewController(vc: MainVC.self)
         }
     }
 
@@ -64,16 +71,16 @@ class ComicDetailVC: UIViewController {
     }
     
     @IBAction func insertFavorite(_ sender: UIBarButtonItem) {
-        let insertAlert = UIAlertController(title: "Alert", message: "Are you willing to save this comic on your favorite comic list?", preferredStyle: UIAlertControllerStyle.alert)
-        
-        insertAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+        var actions = [UIAlertAction]()
+        actions.append(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
             self.saveComic()
         }))
-        
-        insertAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+        actions.append(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction) in
             return
         }))
-        self.present(insertAlert, animated: true, completion: nil)
+            
+        let alert = objectBuilder.alertBuilder(forTitle: "Saving...", forMessage: "Are you willing to save this comic on your favorite comic list?", forActions: actions)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func saveComic() {

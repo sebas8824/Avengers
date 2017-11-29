@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 import AlamofireImage
+import UIKit
 
 class ObjectBuilder {
     var formatter = Formatter()
@@ -29,4 +30,22 @@ class ObjectBuilder {
             completionHandler(image)
         })
     }
+    
+    func alertBuilder(forTitle title: String, forMessage message: String, forActions actions: [UIAlertAction]?) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        if actions != nil {
+            for action in actions! {
+                alert.addAction(action)
+            }
+        } else {
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        }        
+        return alert
+    }
+    
+    func offlineAlert() -> UIAlertController {
+        let alert = alertBuilder(forTitle: "Offline mode", forMessage: "You are currently without internet connection. The app will continue working, but you only will be able to browse your favorite comic", forActions: nil)
+        return alert
+    }
+    
 }

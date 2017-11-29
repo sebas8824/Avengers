@@ -14,6 +14,8 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var heroTableView: UITableView!
     @IBOutlet weak var favoritesButton: UIButton!
     
+    var isConnected = Reachability.isConnectedToNetwork()
+    var objectBuilder: ObjectBuilder = ObjectBuilder()
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavbarTitleImage(imageName: "avengers-logo")
@@ -41,7 +43,11 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //Table view actions
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "HeroVC", sender: HeroDefaultData.instance.getHeroes()[indexPath.row])
+        if isConnected {
+            performSegue(withIdentifier: "HeroVC", sender: HeroDefaultData.instance.getHeroes()[indexPath.row])
+        } else {
+            self.present(objectBuilder.offlineAlert(), animated: true, completion: nil)
+        }
     }
     
     //Segue to comicVC
@@ -68,6 +74,4 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBAction func favoritesButtonTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "FavoriteListVCSegue", sender: self)
     }
-    
-
 }

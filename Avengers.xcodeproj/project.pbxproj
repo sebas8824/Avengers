@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1078B3ED1FCE09540029BF90 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078B3EC1FCE09540029BF90 /* Reachability.swift */; };
+		1078B3F01FCE10100029BF90 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1078B3EF1FCE10100029BF90 /* UINavigationControllerExtension.swift */; };
 		10FE754D1FCDBBD400606F80 /* FavoriteItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FE754C1FCDBBD400606F80 /* FavoriteItemCell.swift */; };
 		341C1AFE1FC8B1F100C5546B /* RequestUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341C1AFD1FC8B1F100C5546B /* RequestUrlBuilder.swift */; };
 		3456130D1FCB1F770062BB90 /* ComicDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3456130C1FCB1F770062BB90 /* ComicDetail.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		0491474D4FF8872C4ADAE3E3 /* Pods_Avengers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Avengers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1078B3EC1FCE09540029BF90 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		1078B3EF1FCE10100029BF90 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		10FE754C1FCDBBD400606F80 /* FavoriteItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteItemCell.swift; sourceTree = "<group>"; };
 		1193C545AFE231E1439E8945 /* Pods-Avengers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Avengers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Avengers/Pods-Avengers.release.xcconfig"; sourceTree = "<group>"; };
 		341C1AFD1FC8B1F100C5546B /* RequestUrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUrlBuilder.swift; sourceTree = "<group>"; };
@@ -87,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1078B3EE1FCE0FF30029BF90 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1078B3EF1FCE10100029BF90 /* UINavigationControllerExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		341C1AFC1FC8B1DA00C5546B /* Factory */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +113,6 @@
 				34E50B9C1FC8DEE500B93F27 /* Comic.swift */,
 				3456130C1FCB1F770062BB90 /* ComicDetail.swift */,
 				3458BA611FCB27F60040CAD3 /* ComicCreator.swift */,
-				34B62F8E1FC87518002AD46E /* ComicVC.swift */,
 			);
 			path = Comic;
 			sourceTree = "<group>";
@@ -174,6 +185,7 @@
 			children = (
 				34B62FA11FC88251002AD46E /* MainVC.swift */,
 				34DBD5C81FC9FAAF0011E163 /* ComicDetailVC.swift */,
+				34B62F8E1FC87518002AD46E /* ComicVC.swift */,
 				34B579C31FCCC75800EE9423 /* FavoriteListVC.swift */,
 				34B579C51FCCC76900EE9423 /* FavoriteDetailsVC.swift */,
 			);
@@ -183,6 +195,7 @@
 		34B62FAD1FC892B5002AD46E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1078B3EE1FCE0FF30029BF90 /* Extension */,
 				341C1AFC1FC8B1DA00C5546B /* Factory */,
 				34E50B9E1FC8EBF700B93F27 /* Helpers */,
 				34B62FB01FC8934A002AD46E /* Constants */,
@@ -220,6 +233,7 @@
 			children = (
 				34E50B9F1FC8EC1400B93F27 /* Formatter.swift */,
 				3458BA661FCB2DE00040CAD3 /* ObjectBuilder.swift */,
+				1078B3EC1FCE09540029BF90 /* Reachability.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -438,6 +452,7 @@
 				34B579C01FCCBCB300EE9423 /* ComicData+CoreDataProperties.swift in Sources */,
 				3458BA621FCB27F60040CAD3 /* ComicCreator.swift in Sources */,
 				341C1AFE1FC8B1F100C5546B /* RequestUrlBuilder.swift in Sources */,
+				1078B3F01FCE10100029BF90 /* UINavigationControllerExtension.swift in Sources */,
 				34B579C21FCCBCB400EE9423 /* ComicAuthor+CoreDataProperties.swift in Sources */,
 				10FE754D1FCDBBD400606F80 /* FavoriteItemCell.swift in Sources */,
 				34B62FA21FC88251002AD46E /* MainVC.swift in Sources */,
@@ -446,6 +461,7 @@
 				34B579C11FCCBCB300EE9423 /* ComicAuthor+CoreDataClass.swift in Sources */,
 				34E50B9D1FC8DEE500B93F27 /* Comic.swift in Sources */,
 				34DBD5C91FC9FAAF0011E163 /* ComicDetailVC.swift in Sources */,
+				1078B3ED1FCE09540029BF90 /* Reachability.swift in Sources */,
 				34B62F8D1FC87518002AD46E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
